@@ -1,9 +1,15 @@
-//Install express server
-const express = require('express');
-const app = express();
+var express = require("express");
+var bodyParser = require("body-parser");
+var mongodb = require("mongodb");
+var ObjectID = mongodb.ObjectID;
 
-// Serve only the static files form the dist directory
-app.use(express.static(__dirname + '/dist'));
+var CONTACTS_COLLECTION = "contacts";
 
-// Start the app by listening on the default Heroku port
-app.listen(process.env.PORT || 8080);
+var app = express();
+app.use(bodyParser.json());
+
+// Create link to Angular build directory
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
+
+// Rest of server.js code below
